@@ -33,8 +33,8 @@
 </head>
 
 <body>
-  
-<!-- ======= Header ======= -->
+
+  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -53,12 +53,12 @@
             <i class="bi bi-search"></i>
           </a>
         </li><!-- End Search Icon-->
-        
+
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            
+
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -115,50 +115,50 @@
 
   </header><!-- End Header -->
 
-<aside id="sidebar" class="sidebar">
-  <ul class="sidebar-nav" id="sidebar-nav">
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-    <!-- Dashboard -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'index.php') ? '' : 'collapsed' ?>" href="index.php">
-        <i class="bi bi-speedometer2"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
+      <!-- Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link <?= ($page == 'index.php') ? '' : 'collapsed' ?>" href="index.php">
+          <i class="bi bi-speedometer2"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
 
-    <!-- Kategori Produk -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'kategori_produk.php') ? '' : 'collapsed' ?>" href="kategori_produk.php">
-        <i class="bi bi-tags"></i>
-        <span>Kategori Produk</span>
-      </a>
-    </li>
+      <!-- Kategori Produk -->
+      <li class="nav-item">
+        <a class="nav-link <?= ($page == 'kategori_produk.php') ? '' : 'collapsed' ?>" href="kategori_produk.php">
+          <i class="bi bi-tags"></i>
+          <span>Kategori Produk</span>
+        </a>
+      </li>
 
-    <!-- Data Produk -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'data_produk.php') ? '' : 'collapsed' ?>" href="data_produk.php">
-        <i class="bi bi-box"></i>
-        <span>Data Produk</span>
-      </a>
-    </li>
+      <!-- Data Produk -->
+      <li class="nav-item">
+        <a class="nav-link <?= ($page == 'data_produk.php') ? '' : 'collapsed' ?>" href="data_produk.php">
+          <i class="bi bi-box"></i>
+          <span>Data Produk</span>
+        </a>
+      </li>
 
-    <!-- Laporan -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'laporan.php') ? '' : 'collapsed' ?>" href="laporan.php">
-        <i class="bi bi-bar-chart-line"></i>
-        <span>Laporan</span>
-      </a>
-    </li>
+      <!-- Laporan -->
+      <li class="nav-item">
+        <a class="nav-link <?= ($page == 'laporan.php') ? '' : 'collapsed' ?>" href="laporan.php">
+          <i class="bi bi-bar-chart-line"></i>
+          <span>Laporan</span>
+        </a>
+      </li>
 
-    <!-- Manajemen User -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'user.php') ? '' : 'collapsed' ?>" href="user.php">
-        <i class="bi bi-people"></i>
-        <span>Manajemen User</span>
-      </a>
-    </li>
+      <!-- Manajemen User -->
+      <li class="nav-item">
+        <a class="nav-link <?= ($page == 'user.php') ? '' : 'collapsed' ?>" href="user.php">
+          <i class="bi bi-people"></i>
+          <span>Manajemen User</span>
+        </a>
+      </li>
 
-  </ul>
+    </ul>
 
   </aside><!-- End Sidebar-->
 
@@ -168,69 +168,39 @@
       <h1>kategori produk</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">dashboard</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
           <li class="breadcrumb-item active">kategori produk</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
+    <div class="row">
+      <div class="col-lg-12">
 
+        <div class="card">
+          <div class="card-body mt-3">
+            <a href="t_kat.php" class="btn btn-primary">Tambah data</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
 
           <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Datatables</h5>
-              <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+            <div class="card-body mt-3">
 
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">no</th>
+                    <th scope="col">kode kategori</th>
+                    <th scope="col">kategori produk</th>
+                    <th scope="col">aksi</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
               </table>
               <!-- End Table with stripped rows -->
 

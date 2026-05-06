@@ -1,3 +1,32 @@
+<?php
+include "koneksi.php";
+
+$auto = mysqli_query($conn, "select max(kd_kat) as max_code from categories");
+$hasil = mysqli_fetch_array($auto);
+$code = $hasil['max_code'];
+if ($code == NULL) {
+    $urutan = 0;
+} else {
+    $urutan = (int) substr($code, 1, 3);
+}
+$urutan++;
+$huruf = "K";
+$kd_kat = $huruf . sprintf("%03s", $urutan);
+
+if (isset($_POST['simpan'])) {
+    $nm_kat = $_POST['nm_kat'];
+
+    $query = mysqli_query($conn, "INSERT INTO categories(kd_kat, category_name) VALUES ('$kd_kat', '$nm_kat')");
+    if ($query) {
+        echo "<script>alert('Data berhasil ditambahkan!')</script>";
+        header("refresh:0, kategori_produk.php");
+    } else {
+        echo "<script>alert('Data gagal ditambahkan!')</script>";
+        header("refresh:0, kategori_produk.php");
+    }
+}
+?>
+<?php $page = basename($_SERVER['PHP_SELF']); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +34,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Produk - dayat25550013</title>
+  <title>kategori produk - dayat25550013</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -53,13 +82,11 @@
           </a>
         </li><!-- End Search Icon-->
 
-        
-        
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            
+
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -116,128 +143,98 @@
 
   </header><!-- End Header -->
 
-<aside id="sidebar" class="sidebar">
-  <ul class="sidebar-nav" id="sidebar-nav">
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-    <!-- Dashboard -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'index.php') ? '' : 'collapsed' ?>" href="index.php">
-        <i class="bi bi-speedometer2"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
+      <!-- Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link <?= ($page == 'index.php') ? '' : 'collapsed' ?>" href="index.php">
+          <i class="bi bi-speedometer2"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
 
-    <!-- Kategori Produk -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'kategori_produk.php') ? '' : 'collapsed' ?>" href="kategori_produk.php">
-        <i class="bi bi-tags"></i>
-        <span>Kategori Produk</span>
-      </a>
-    </li>
+      <!-- Kategori Produk -->
+      <li class="nav-item">
+        <a class="nav-link <?= ($page == 'kategori_produk.php') ? '' : 'collapsed' ?>" href="kategori_produk.php">
+          <i class="bi bi-tags"></i>
+          <span>Kategori Produk</span>
+        </a>
+      </li>
 
-    <!-- Data Produk -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'data_produk.php') ? '' : 'collapsed' ?>" href="data_produk.php">
-        <i class="bi bi-box"></i>
-        <span>Data Produk</span>
-      </a>
-    </li>
+      <!-- Data Produk -->
+      <li class="nav-item">
+        <a class="nav-link <?= ($page == 'data_produk.php') ? '' : 'collapsed' ?>" href="data_produk.php">
+          <i class="bi bi-box"></i>
+          <span>Data Produk</span>
+        </a>
+      </li>
 
-    <!-- Laporan -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'laporan.php') ? '' : 'collapsed' ?>" href="laporan.php">
-        <i class="bi bi-bar-chart-line"></i>
-        <span>Laporan</span>
-      </a>
-    </li>
+      <!-- Laporan -->
+      <li class="nav-item">
+        <a class="nav-link <?= ($page == 'laporan.php') ? '' : 'collapsed' ?>" href="laporan.php">
+          <i class="bi bi-bar-chart-line"></i>
+          <span>Laporan</span>
+        </a>
+      </li>
 
-    <!-- Manajemen User -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'user.php') ? '' : 'collapsed' ?>" href="user.php">
-        <i class="bi bi-people"></i>
-        <span>Manajemen User</span>
-      </a>
-    </li>
+      <!-- Manajemen User -->
+      <li class="nav-item">
+        <a class="nav-link <?= ($page == 'user.php') ? '' : 'collapsed' ?>" href="user.php">
+          <i class="bi bi-people"></i>
+          <span>Manajemen User</span>
+        </a>
+      </li>
 
-  </ul>
+    </ul>
 
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Tables</h1>
+      <h1>Kategori produk</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Data</li>
+          <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+          <li class="breadcrumb-item">kategori produk</li>
+          <li class="breadcrumb-item active">tambah</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
-
     <section class="section">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
+
+        
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Datatables</h5>
-              <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+              <h5 class="card-title">Tambah Kategori Produk</h5>
 
-              <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
-
-            </div>
-          </div>
+              <!-- Vertical Form -->
+              <form class="row g-3" method="post">
+                <div class="col-12">
+                  <label for="kd_kat" class="form-label">Kode Kategori</label>
+                  <input type="text" class="form-control" id="kd_kat" name="kd_kat" value="<?php echo $kd_kat; ?> readonly" >
+                </div>
+                <div class="col-12">
+                  <label for="kd_kat" class="form-label">Nama Kategori</label>
+                  <input type="text" class="form-control" id="kd_kat" name="kd_kat" required>
+                </div>
+                <div class="text-center">
+                 <button type="button" class="btn btn-warning"><a href="kategori_produk.php" style="color: black; text-decoration:none;">Kembali</a></button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
+                </div>
+              </form><!-- Vertical Form -->
 
         </div>
       </div>
@@ -248,7 +245,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      &copy Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->

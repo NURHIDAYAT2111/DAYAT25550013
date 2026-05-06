@@ -1,3 +1,3 @@
 <?php
-$comn = mysqli_connect("localhost", "root","","website_strukturdata");
+$conn = mysqli_connect("localhost", "root","","#mysql50#HIDAYAT25550013-main");
 ?>
