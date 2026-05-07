@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Stok - dayat25550013</title>
+  <title>Stock - dayat25550013</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,8 +28,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
-  
 </head>
 
 <body>
@@ -40,27 +38,18 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Hidayat</span>
+        <span class="d-none d-lg-block">dayat25550013</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
+
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="user-profil.html">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
-        
-
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -103,7 +92,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="login.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -117,62 +106,57 @@
 
   </header><!-- End Header -->
 
-<aside id="sidebar" class="sidebar">
-  <ul class="sidebar-nav" id="sidebar-nav">
+  <!-- ======= Sidebar ======= -->
+   <aside id="sidebar" class="sidebar">
 
-    <!-- Dashboard -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page = 'index.php') ? '' : 'collapsed' ?>" href="index.php">
-        <i class="bi bi-speedometer2"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-    <!-- Kategori Produk -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'kategori_produk.php') ? '' : 'collapsed' ?>" href="kategori_produk.php">
-        <i class="bi bi-tags"></i>
-        <span>Kategori Produk</span>
-      </a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.php">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="kategori_produk.php">
+          <i class="bi bi-tags"></i>
+          <span>Kategori Produk</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
-    <!-- Data Produk -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'data_produk.php') ? '' : 'collapsed' ?>" href="data_produk.php">
-        <i class="bi bi-box"></i>
-        <span>Data Produk</span>
-      </a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link " href="produk.php">
+          <i class="bi bi-box-seam"></i>
+          <span>Data Produk</span>
+        </a>
+      </li><!-- End Data Produk Page Nav -->
 
-    <!-- Laporan -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'laporan.php') ? '' : 'collapsed' ?>" href="laporan.php">
-        <i class="bi bi-bar-chart-line"></i>
-        <span>Laporan</span>
-      </a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="laporan.php">
+          <i class="bi bi-bar-chart-line"></i>
+          <span>Laporan</span>
+        </a>
+      </li><!-- End Laporan Page Nav -->
 
-    <!-- Manajemen User -->
-    <li class="nav-item">
-      <a class="nav-link <?= ($page == 'user.php') ? '' : 'collapsed' ?>" href="user.php">
-        <i class="bi bi-people"></i>
-        <span>Manajemen User</span>
-      </a>
-    </li>
-
-  </ul>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users.php">
+          <i class="bi bi-people"></i>
+          <span>Manajemen User</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+    </ul>
 
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Blank Page</h1>
+      <h1>Stock Produk</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Blank</li>
+          <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="produk.php">Produk</a></li>
+          <li class="breadcrumb-item active">Stock</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -208,7 +192,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>dayat25550013</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->

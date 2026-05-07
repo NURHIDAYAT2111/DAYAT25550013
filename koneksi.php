@@ -1,3 +1,3 @@
 <?php
-$conn = mysqli_connect("localhost", "root","","#mysql50#HIDAYAT25550013-main");
+$conn = mysqli_connect("localhost", "root","","hidayat21");
 ?>
