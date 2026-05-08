@@ -147,7 +147,7 @@ if (isset($_POST['update'])) {
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link" href="produk.php">
+                <a class="nav-link" href="data_produk.php">
                     <i class="bi bi-box"></i>
                     <span>Data Produk</span>
                 </a>
@@ -161,7 +161,7 @@ if (isset($_POST['update'])) {
             </li><!-- End Contact Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users.php">
+                <a class="nav-link collapsed" href="user.php">
                     <i class="bi bi-people"></i>
                     <span>Manajemen User</span>
                 </a>

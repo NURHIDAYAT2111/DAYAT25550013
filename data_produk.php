@@ -38,7 +38,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">dayat25550013</span>
+        <span class="d-none d-lg-block">HIDAYAT</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -126,7 +126,7 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="produk.php">
+        <a class="nav-link " href="data_produk.php">
           <i class="bi bi-box-seam"></i>
           <span>Data Produk</span>
         </a>
@@ -140,7 +140,7 @@
       </li><!-- End Laporan Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users.php">
+        <a class="nav-link collapsed" href="user.php">
           <i class="bi bi-people"></i>
           <span>Manajemen User</span>
         </a>
