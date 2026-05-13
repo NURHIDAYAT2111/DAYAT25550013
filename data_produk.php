@@ -126,7 +126,7 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="data_produk.php">
+        <a class="nav-link " href="produk.php">
           <i class="bi bi-box-seam"></i>
           <span>Data Produk</span>
         </a>
@@ -165,7 +165,7 @@
           <div class="card">
             <div class="card-body mt-3">
               <a href="t_produk.php" class="btn btn-primary">Tambah Data</a>
-              <a href="stok.php" class="btn btn-primary">Stok</a>
+              <a href="stok.php" class="btn btn-dark">Stok</a>
             </div>
           </div>
         </div>
@@ -214,7 +214,7 @@
                     <img src="produk_img/<?php echo $data['gambar']; ?>" width="50" class="rounded">
                   </td>
                   <td>
-                    <a href="edit_produk.php?id=<?php echo $data['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="e_produk.php?id=<?php echo $data['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
                     <a href="h_produk.php?id=<?php echo $data['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin?')">Hapus</a>
                   </td>
                 </tr>
@@ -242,7 +242,7 @@
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      Designed by <a href="#">dayat25550013</a>
     </div>
   </footer><!-- End Footer -->
 
