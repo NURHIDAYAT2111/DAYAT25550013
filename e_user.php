@@ -1,4 +1,14 @@
 <?php
+session_start();
+include "koneksi.php";
+
+// Cek apakah user sudah login
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+<?php
 include "koneksi.php";
 
 $id   = $_GET['id'];
@@ -21,7 +31,7 @@ if (isset($_POST['update'])) {
     if (mysqli_num_rows($cek) > 0) {
         echo "<script>
                 alert('Email sudah digunakan user lain!');
-                window.location='user.php';
+                window.location='users.php';
               </script>";
         exit;
     }
@@ -34,12 +44,11 @@ if (isset($_POST['update'])) {
         $query = mysqli_query($conn, "UPDATE users SET
                     name='$name',
                     email='$email',
-                    password='$password',
+                    password='$password_hash',
                     role='$role',
                     is_active='$is_active'
                     WHERE id='$id'
                 ");
-
     } else {
 
         // jika password kosong → jangan update password
@@ -72,7 +81,7 @@ if (isset($_POST['update'])) {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Manajemen User - dayat25550013</title>
+    <title>Manajemen User - HIDAYAT</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -106,7 +115,7 @@ if (isset($_POST['update'])) {
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">dayat25550013</span>
+                <span class="d-none d-lg-block">HIDAYAT</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -114,61 +123,45 @@ if (isset($_POST['update'])) {
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                </a><!-- End Profile Iamge Icon -->
+                <li class="nav-item dropdown pe-3">
 
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                    <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
-                        <span>Web Designer</span>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0"
+                        href="#"
+                        data-bs-toggle="dropdown">
+                        <img
+                            src="assets/img/ilham2.jpeg"
+                            alt="Profile"
+                            class="rounded-circle" />
+                    </a>
+                    <!-- End Profile Image Icon -->
 
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-person"></i>
-                            <span>My Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>
+                                <?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'User'; ?>
+                            </h6>
+                            <span>
+                                <?php echo isset($_SESSION['role']) ? $_SESSION['role'] : 'Role'; ?>
+                            </span>
+                        </li>
 
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-gear"></i>
-                            <span>Account Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
 
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                            <i class="bi bi-question-circle"></i>
-                            <span>Need Help?</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <i class="bi bi-box-arrow-right"></i>
-                            <span>Sign Out</span>
-                        </a>
-                    </li>
-
-                </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
-
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="logout.php">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
             </ul>
-        </nav><!-- End Icons Navigation -->
+        </nav>
+        <!-- End Icons Navigation -->
 
     </header><!-- End Header -->
 
@@ -206,7 +199,7 @@ if (isset($_POST['update'])) {
             </li><!-- End Contact Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users.php">
+                <a class="nav-link collapsed" href="user.php">
                     <i class="bi bi-card-list"></i>
                     <span>Manajemen User</span>
                 </a>
@@ -300,7 +293,7 @@ if (isset($_POST['update'])) {
                                 </div>
 
                                 <div class="text-center">
-                                    <a href="users.php" class="btn btn-warning">
+                                    <a href="user.php" class="btn btn-warning">
                                         Kembali
                                     </a>
 
@@ -328,7 +321,11 @@ if (isset($_POST['update'])) {
             &copy; Copyright <strong><span>HIDAYAT</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="">HIDAYAT</a>
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+            Designed by <a href="https://www.instagram.com/ddyttt21">HIDAYAT</a>
         </div>
     </footer><!-- End Footer -->
 

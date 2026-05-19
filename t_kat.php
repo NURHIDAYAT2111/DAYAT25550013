@@ -1,4 +1,14 @@
 <?php
+session_start();
+include "koneksi.php";
+
+// Cek apakah user sudah login
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+<?php
 include "koneksi.php";
 
 $auto = mysqli_query($conn, "select max(kd_kat) as max_code from categories");
@@ -26,6 +36,7 @@ if (isset($_POST['simpan'])) {
     }
 }
 ?>
+<?php $page = basename($_SERVER['PHP_SELF']); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +44,7 @@ if (isset($_POST['simpan'])) {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kategori Produk - dayat25550013</title>
+    <title>Kategori Produk - HIDAYAT </title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -65,9 +76,9 @@ if (isset($_POST['simpan'])) {
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="index.php" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">dayat25550013</span>
+                <span class="d-none d-lg-block">HIDAYAT</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -75,108 +86,91 @@ if (isset($_POST['simpan'])) {
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
-
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    </a><!-- End Profile Iamge Icon -->
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0"
+                        href="#"
+                        data-bs-toggle="dropdown">
+                        <img
+                            src="assets/img/ilham2.jpeg"
+                            alt="Profile"
+                            class="rounded-circle" />
+                    </a>
+                    <!-- End Profile Image Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
+                            <h6>
+                                <?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'User'; ?>
+                            </h6>
+                            <span>
+                                <?php echo isset($_SESSION['role']) ? $_SESSION['role'] : 'Role'; ?>
+                            </span>
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
+                            <hr class="dropdown-divider" />
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="logout.php">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
                         </li>
-
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
-
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
             </ul>
-        </nav><!-- End Icons Navigation -->
+        </nav>
+        <!-- End Icons Navigation -->
 
     </header><!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
 
+            <!-- Dashboard -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php">
-                    <i class="bi bi-speedometer2"></i>
+                <a class="nav-link <?= ($page == 'index.php') ? '' : 'collapsed' ?>" href="index.php">
+                    <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
+            </li>
 
+            <!-- Kategori Produk -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="kategori_produk.php">
-                    <i class="bi bi-tags"></i>
+                <a class="nav-link <?= ($page == 'kategori_produk.php') ? '' : 'collapsed' ?>" href="kategori_produk.php">
+                    <i class="bi bi-person"></i>
                     <span>Kategori Produk</span>
                 </a>
-            </li><!-- End Profile Page Nav -->
+            </li>
 
+            <!-- Data Produk -->
             <li class="nav-item">
-                <a class="nav-link" href="data_produk.php">
-                    <i class="bi bi-box"></i>
+                <a class="nav-link <?= ($page == 'produk.php') ? '' : 'collapsed' ?>" href="produk.php">
+                    <i class="bi bi-question-circle"></i>
                     <span>Data Produk</span>
                 </a>
-            </li><!-- End F.A.Q Page Nav -->
+            </li>
 
+            <!-- Laporan -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="laporan.php">
-                    <i class="bi bi-bar-chart-line"></i>
+                <a class="nav-link <?= ($page == 'laporan.php') ? '' : 'collapsed' ?>" href="laporan.php">
+                    <i class="bi bi-envelope"></i>
                     <span>Laporan</span>
                 </a>
-            </li><!-- End Contact Page Nav -->
+            </li>
 
+            <!-- Manajemen User -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users.php">
-                    <i class="bi bi-people"></i>
+                <a class="nav-link <?= ($page == 'users.php') ? '' : 'collapsed' ?>" href="users.php">
+                    <i class="bi bi-card-list"></i>
                     <span>Manajemen User</span>
                 </a>
-            </li><!-- End Register Page Nav -->
-
-
+            </li>
 
         </ul>
 
@@ -184,6 +178,7 @@ if (isset($_POST['simpan'])) {
 
 
     <main id="main" class="main">
+
         <div class="pagetitle">
             <h1>Kategori Produk</h1>
             <nav>
@@ -213,18 +208,15 @@ if (isset($_POST['simpan'])) {
                                     <label for="nm_kat" class="form-label">Nama Kategori</label>
                                     <input type="text" class="form-control" id="nm_kat" name="nm_kat" required>
                                 </div>
-
                                 <div class="text-center">
-                                    <button type="button" class="btn btn-warning"><a href="Kategori_Produk.php" style="color: black; text-decoration:none;">Kembali</a></button>
+                                    <button type="button" class="btn btn-warning"><a href="kategori_produk.php" style="color: black; text-decoration:none;">Kembali</a></button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                     <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
                                 </div>
                             </form><!-- Vertical Form -->
-
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
 
     </main><!-- End #main -->
@@ -232,14 +224,14 @@ if (isset($_POST['simpan'])) {
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>HIDAYAT</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Designed by <a href="https://www.instagram.com/ddyttt21">HIDAYAT</a>
         </div>
     </footer><!-- End Footer -->
 

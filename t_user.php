@@ -1,4 +1,14 @@
 <?php
+session_start();
+include "koneksi.php";
+
+// Cek apakah user sudah login
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+<?php
 include "koneksi.php";
 
 if (isset($_POST['simpan'])) {
@@ -11,8 +21,12 @@ if (isset($_POST['simpan'])) {
 
     // validasi email tidak boleh sama
     $cek = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
+
     if (mysqli_num_rows($cek) > 0) {
-        echo "<script>alert('Email sudah terdaftar!'); window.location='user.php';</script>";
+        echo "<script>
+                alert('Email sudah terdaftar!');
+                window.location='user.php';
+              </script>";
         exit;
     }
 
@@ -20,18 +34,30 @@ if (isset($_POST['simpan'])) {
     if (!empty($password)) {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
     } else {
-        echo "<script>alert('Password wajib diisi!'); window.location='user.php';</script>";
+        echo "<script>
+                alert('Password wajib diisi!');
+                window.location='user.php';
+              </script>";
         exit;
     }
 
     // insert data
-    $query = mysqli_query($conn, "INSERT INTO users (name,email,password,role,is_active) 
-              VALUES ('$name', '$email', '$password', '$role', '$is_active')");
+    $query = mysqli_query($conn, "INSERT INTO users 
+        (name, email, password, role, is_active)
+        VALUES 
+        ('$name', '$email', '$password_hash', '$role', '$is_active')
+    ");
 
     if ($query) {
-        echo "<script>alert('User berhasil ditambahkan!'); window.location='user.php';</script>";
+        echo "<script>
+                alert('User berhasil ditambahkan!');
+                window.location='user.php';
+              </script>";
     } else {
-        echo "<script>alert('User gagal ditambahkan!'); window.location='user.php';</script>";
+        echo "<script>
+                alert('User gagal ditambahkan!');
+                window.location='user.php';
+              </script>";
     }
 }
 ?>
@@ -42,7 +68,7 @@ if (isset($_POST['simpan'])) {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Manajemen user - dayat25550013</title>
+    <title>Manajemen User - HIDAYAT</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -76,7 +102,7 @@ if (isset($_POST['simpan'])) {
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">Nama Sistem</span>
+                <span class="d-none d-lg-block">HIDAYAT</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -84,61 +110,45 @@ if (isset($_POST['simpan'])) {
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    </a><!-- End Profile Iamge Icon -->
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0"
+                        href="#"
+                        data-bs-toggle="dropdown">
+                        <img
+                            src="assets/img/ilham2.jpeg"
+                            alt="Profile"
+                            class="rounded-circle" />
+                    </a>
+                    <!-- End Profile Image Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
+                            <h6>
+                                <?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'User'; ?>
+                            </h6>
+                            <span>
+                                <?php echo isset($_SESSION['role']) ? $_SESSION['role'] : 'Role'; ?>
+                            </span>
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
+                            <hr class="dropdown-divider" />
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="logout.php">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
                         </li>
-
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
-
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
             </ul>
-        </nav><!-- End Icons Navigation -->
+        </nav>
+        <!-- End Icons Navigation -->
 
     </header><!-- End Header -->
 
@@ -164,7 +174,7 @@ if (isset($_POST['simpan'])) {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="produk.php">
                     <i class="bi bi-question-circle"></i>
-                    <span>Data_Produk</span>
+                    <span>Data Produk</span>
                 </a>
             </li><!-- End F.A.Q Page Nav -->
 
@@ -176,7 +186,7 @@ if (isset($_POST['simpan'])) {
             </li><!-- End Contact Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users.php">
+                <a class="nav-link collapsed" href="user.php">
                     <i class="bi bi-card-list"></i>
                     <span>Manajemen User</span>
                 </a>
@@ -188,11 +198,11 @@ if (isset($_POST['simpan'])) {
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Manajemen user</h1>
+            <h1>Manjemen User</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                    <li class="breadcrumb-item">Manajemen user</li>
+                    <li class="breadcrumb-item">Manajemen User</li>
                     <li class="breadcrumb-item active">Tambah</li>
                 </ol>
             </nav>
@@ -201,71 +211,62 @@ if (isset($_POST['simpan'])) {
             <div class="row">
                 <div class="col-lg-6">
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Vertical Form</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">Tambah User</h5>
 
-                            <!-- Vertical Form -->
-                            <div class="card-body">
-    <h5 class="card-title">Tambah User</h5>
+                        <form class="row g-3" method="post">
+                            <div class="col-12">
+                                <label for="name" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
 
-    <form class="row g-3" method="post">
+                            <div class="col-12">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
 
-        <div class="col-12">
-            <label for="name" class="form-label">Nama</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
+                            <div class="col-12">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
 
-        <div class="col-12">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
+                            <div class="col-12">
+                                <label for="role" class="form-label">Role</label>
+                                <select class="form-control" name="role" required>
+                                    <option value="">-- Pilih Role --</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="staff">Staff</option>
+                                </select>
+                            </div>
 
-        <div class="col-12">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password">
-        </div>
+                            <div class="col-12">
+                                <label for="is_active" class="form-label">Status</label>
+                                <select class="form-control" name="is_active">
+                                    <option value="1">Aktif</option>
+                                    <option value="0">Nonaktif</option>
+                                </select>
+                            </div>
 
-        <div class="col-12">
-            <label for="role" class="form-label">Role</label>
-            <select class="form-control" name="role" required>
-                <option value="">-- Pilih Role --</option>
-                <option value="admin">Admin</option>
-                <option value="staff">Staff</option>
-            </select>
-        </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-warning">
+                                    <a href="user.php" style="color: black; text-decoration:none;">
+                                        Kembali
+                                    </a>
+                                </button>
 
-        <div class="col-12">
-            <label for="is_active" class="form-label">Status</label>
-            <select class="form-control" name="is_active">
-                <option value="1">Aktif</option>
-                <option value="0">Nonaktif</option>
-            </select>
-        </div>
+                                <button type="reset" class="btn btn-secondary">
+                                    Reset
+                                </button>
 
-        <div class="text-center">
-            <button type="button" class="btn btn-warning">
-                <a href="users.php" style="color: black; text-decoration:none;">
-                    Kembali
-                </a>
-            </button>
+                                <button type="submit" class="btn btn-success" name="simpan">
+                                    Simpan
+                                </button>
+                            </div>
 
-            <button type="reset" class="btn btn-secondary">
-                Reset
-            </button>
-
-            <button type="submit" class="btn btn-success" name="simpan">
-                Simpan
-            </button>
-        </div>
-
-    </form>
-</div>
-                            </form><!-- Vertical Form -->
-
-                        </div>
+                        </form>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
 
@@ -274,10 +275,14 @@ if (isset($_POST['simpan'])) {
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>Nama Sistem</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>HIDAYAT</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="">Nama Kalian</a>
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+            Designed by <a href="https://www.instagram.com/ddyttt21">HIDAYAT</a>
         </div>
     </footer><!-- End Footer -->
 
