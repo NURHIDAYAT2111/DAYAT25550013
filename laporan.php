@@ -86,7 +86,7 @@ $total_stok_kritis = mysqli_num_rows(mysqli_query(
             href="#"
             data-bs-toggle="dropdown">
             <img
-              src="assets/img/ilham2.jpeg"
+              src="assets/img/ikan.png"
               alt="Profile"
               class="rounded-circle" />
           </a>
