@@ -210,64 +210,64 @@ if (isset($_POST['simpan'])) {
         <section class="section">
             <div class="row">
                 <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Add User</h5>
 
-                    <div class="card-body">
-                        <h5 class="card-title">Tambah User</h5>
+                            <form class="row g-3" method="post">
 
-                        <form class="row g-3" method="post">
-                            <div class="col-12">
-                                <label for="name" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
-                            </div>
+                                <div class="col-12">
+                                    <label for="name" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
 
-                            <div class="col-12">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
+                                <div class="col-12">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
 
-                            <div class="col-12">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
-                            </div>
+                                <div class="col-12">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password">
+                                </div>
 
-                            <div class="col-12">
-                                <label for="role" class="form-label">Role</label>
-                                <select class="form-control" name="role" required>
-                                    <option value="">-- Pilih Role --</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="staff">Staff</option>
-                                </select>
-                            </div>
+                                <div class="col-12">
+                                    <label for="role" class="form-label">Role</label>
+                                    <select class="form-control" name="role" required>
+                                        <option value="">-- Pilih Role --</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="staff">Staff</option>
+                                    </select>
+                                </div>
 
-                            <div class="col-12">
-                                <label for="is_active" class="form-label">Status</label>
-                                <select class="form-control" name="is_active">
-                                    <option value="1">Aktif</option>
-                                    <option value="0">Nonaktif</option>
-                                </select>
-                            </div>
+                                <div class="col-12">
+                                    <label for="is_active" class="form-label">Status</label>
+                                    <select class="form-control" name="is_active">
+                                        <option value="1">Aktif</option>
+                                        <option value="0">Nonaktif</option>
+                                    </select>
+                                </div>
 
-                            <div class="text-center">
-                                <button type="button" class="btn btn-warning">
-                                    <a href="user.php" style="color: black; text-decoration:none;">
-                                        Kembali
-                                    </a>
-                                </button>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-warning">
+                                        <a href="users.php" style="color: black; text-decoration:none;">
+                                            Kembali
+                                        </a>
+                                    </button>
 
-                                <button type="reset" class="btn btn-secondary">
-                                    Reset
-                                </button>
+                                    <button type="reset" class="btn btn-secondary">
+                                        Reset
+                                    </button>
 
-                                <button type="submit" class="btn btn-success" name="simpan">
-                                    Simpan
-                                </button>
-                            </div>
+                                    <button type="submit" class="btn btn-success" name="simpan">
+                                        Simpan
+                                    </button>
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            </div>
         </section>
 
     </main><!-- End #main -->

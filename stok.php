@@ -176,7 +176,7 @@ if (isset($_POST['submit'])) {
       <!-- Kategori Produk -->
       <li class="nav-item">
         <a class="nav-link <?= ($page == 'kategori_produk.php') ? '' : 'collapsed' ?>" href="kategori_produk.php">
-          <i class="bi bi-person"></i>
+          <i class="bi bi-tags"></i>
           <span>Kategori Produk</span>
         </a>
       </li>
@@ -184,7 +184,7 @@ if (isset($_POST['submit'])) {
       <!-- Data Produk -->
       <li class="nav-item">
         <a class="nav-link <?= ($page == 'data_produk.php') ? '' : 'collapsed' ?>" href="data_produk.php">
-          <i class="bi bi-question-circle"></i>
+          <i class="bi bi-box-seam"></i>
           <span>Data Produk</span>
         </a>
       </li>

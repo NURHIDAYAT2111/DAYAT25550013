@@ -257,7 +257,7 @@ if (isset($_POST['simpan'])) {
                                     <input type="file" class="form-control" id="gambar" name="gambar" accept="image/*">
                                 </div>
                                 <div class="text-center">
-                                    <button type="button" class="btn btn-primary"><a href="data_produk.php" style="color: black; text-decoration:none;">Kembali</a></button>
+                                    <button type="button" class="btn btn-warning"><a href="data_produk.php" style="color: black; text-decoration:none;">Kembali</a></button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                     <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
                                 </div>
